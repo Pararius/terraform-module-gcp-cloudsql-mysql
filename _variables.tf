@@ -46,6 +46,17 @@ variable "highly_available" {
   type = bool
 }
 
+variable "insights_config" {
+  type = object({
+    query_insights_enabled  = bool
+    query_string_length     = optional(number, 1024)
+    record_application_tags = optional(bool, false)
+    record_client_address   = optional(bool, false)
+  })
+  default = {
+    query_insights_enabled = true
+  }
+}
 variable "instance_name" {
   type = string
 }
