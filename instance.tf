@@ -33,6 +33,12 @@ resource "google_sql_database_instance" "instance" {
         value = flag.value
       }
     }
+    insights_config {
+      query_insights_enabled  = var.insights_config.query_insights_enabled
+      query_string_length     = var.insights_config.query_string_length
+      record_application_tags = var.insights_config.record_application_tags
+      record_client_address   = var.insights_config.record_client_address
+    }
     ip_configuration {
       ipv4_enabled = true
       require_ssl  = true
@@ -54,11 +60,5 @@ resource "google_sql_database_instance" "instance" {
         hour = 4
       }
     }
-  }
-
-  lifecycle {
-    ignore_changes = [
-      settings[0].edition # Readonly field which tends to cause perma-diffs
-    ]
   }
 }
