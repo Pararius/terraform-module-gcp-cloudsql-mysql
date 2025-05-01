@@ -2,6 +2,10 @@ output "connection_name" {
   value = google_sql_database_instance.instance.connection_name
 }
 
+output "instance_name" {
+  value = google_sql_database_instance.instance.name
+}
+
 output "ip_addresses" {
   value = {
     for addr in google_sql_database_instance.instance.ip_address : addr.type => addr.ip_address

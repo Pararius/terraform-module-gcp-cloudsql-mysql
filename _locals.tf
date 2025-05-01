@@ -20,7 +20,7 @@ locals {
     for user in concat(
       [{ name = "root" }],
       var.users,
-    ) : "${user.name}@${lookup(user, "host", "%")}" => {
+      ) : "${user.name}@${lookup(user, "host", "%")}" => {
       name = user.name
       host = lookup(user, "host", "%")
     }
